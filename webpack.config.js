@@ -1,5 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 
 const config = {
   mode: 'none',
@@ -21,11 +22,23 @@ const config = {
         test: /\.css$/i,
         use: ['style-loader', 'css-loader'],
       },
+      {
+        test: /\.(jpe?g|png|gif|svg)$/i,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[name].[ext]',
+            }
+          },
+        ],
+      },
     ],
   },
   output: {
     filename: '[name].js',
     path: path.resolve(__dirname, 'build'),
+    publicPath: path.resolve(__dirname, 'build'),
   },
 
   devServer: {
@@ -40,6 +53,11 @@ const config = {
   plugins: [
     new HtmlWebpackPlugin({
       template: path.join(__dirname, 'public', 'index.html'),
+    }),
+    new CopyPlugin({
+      patterns: [
+        { from: 'public/images', to: '' },
+      ],
     }),
   ],
 };
