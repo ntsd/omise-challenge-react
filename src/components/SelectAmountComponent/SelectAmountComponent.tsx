@@ -1,18 +1,21 @@
 import React, {useState} from 'react';
-import {Card} from '../Card/Card';
+import {Card, Button, Row, Container, Col} from 'react-bootstrap';
 import {Charity} from '../../types/Charity';
 import {PostPayment} from '../../api/API';
 import {useDispatch} from 'react-redux';
+import styled from 'styled-components';
 
-interface CharityCardProps {
+interface SelectAmountComponentProps {
   charity: Charity;
 }
 
-export const CharityCard: React.FC<CharityCardProps> = ({charity}) => {
+export const SelectAmountComponent: React.FC<SelectAmountComponentProps> = ({
+  charity,
+}) => {
   const [selectedAmount, setSelectedAmount] = useState(10);
   const dispatch = useDispatch();
 
-  const payments = [10, 20, 50, 100, 500].map((amount, j) => (
+  const paymentRadio = [10, 20, 50, 100, 500].map((amount, j) => (
     <label key={j}>
       <input
         type="radio"
@@ -46,17 +49,33 @@ export const CharityCard: React.FC<CharityCardProps> = ({charity}) => {
     );
   };
 
+  const SelectAmountContainer = styled.div`
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  `;
+
+  const SelectAmountRow = styled.div`
+    line-height: 1.5;
+    vertical-align: middle;
+  `;
+
   return (
-    <Card>
-      <p>{charity.name}</p>
-      {payments}
-      <button
-        onClick={() => {
-          handlePay(charity.id, selectedAmount, charity.currency);
-        }}
-      >
-        Pay
-      </button>
-    </Card>
+    <SelectAmountContainer>
+      <SelectAmountRow>{charity.name}</SelectAmountRow>
+      <SelectAmountRow>{paymentRadio}</SelectAmountRow>
+      <SelectAmountRow>
+        <Button
+          variant="outline-primary"
+          onClick={() => {
+            handlePay(charity.id, selectedAmount, charity.currency);
+          }}
+        >
+          Pay
+        </Button>
+      </SelectAmountRow>
+    </SelectAmountContainer>
   );
 };

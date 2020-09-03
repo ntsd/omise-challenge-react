@@ -15,8 +15,6 @@ export const DonateReducer: Reducer<DonateState, DonateActionInterface> = (
     message: '',
   };
 
-  console.log(action, _state);
-
   switch (action.type) {
     case DonateActionType.UPDATE_TOTAL_DONATE:
       return Object.assign({}, _state, {
@@ -26,7 +24,6 @@ export const DonateReducer: Reducer<DonateState, DonateActionInterface> = (
       return Object.assign({}, _state, {
         message: action.message,
       });
-
     default:
       return _state;
   }

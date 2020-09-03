@@ -7,8 +7,9 @@ import {Charity} from './types/Charity';
 import {Payment} from './types/Payment';
 import {DonateActionType} from './store/donate/action';
 import {GetPayments, GetCharities, PostPayment} from './api/API';
-import {Container, Row} from 'react-bootstrap';
-import {CharityCard} from './components/CharityCard/CharityCard';
+import {Container, Row, Col, Alert} from 'react-bootstrap';
+import {CharityCard} from './components/CharityCardComponent/CharityCardComponent';
+import {HeaderTitle} from './components/HeaderTitleComponent/HeaderTitleComponent';
 
 const mapState = (state: DonateState) => ({
   donate: state.donate,
@@ -40,24 +41,18 @@ export const App: React.FC<AppProps> = props => {
     });
   }, []);
 
-  const style: React.CSSProperties = {
-    color: 'red',
-    margin: '1em 0',
-    fontWeight: 'bold',
-    fontSize: '16px',
-    textAlign: 'center',
-  };
-
   return (
     <Container>
       <Row>
-        <h1>Tamboon React</h1>
+        <HeaderTitle>Omise Tamboon React</HeaderTitle>
       </Row>
       <p>All donations: {props.donate}</p>
-      <p style={style}>{props.message}</p>
+      {props.message && <Alert variant="primary">{props.message}</Alert>}
       <Row>
         {charities.map((charity, i) => (
-          <CharityCard charity={charity} key={i}></CharityCard>
+          <Col md={12} lg={6} key={i}>
+            <CharityCard charity={charity}></CharityCard>
+          </Col>
         ))}
       </Row>
     </Container>
