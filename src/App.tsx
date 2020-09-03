@@ -8,8 +8,8 @@ import {Payment} from './types/Payment';
 import {DonateActionType} from './store/donate/action';
 import {GetPayments, GetCharities, PostPayment} from './api/API';
 import {Container, Row, Col, Alert} from 'react-bootstrap';
-import {CharityCard} from './components/CharityCardComponent/CharityCardComponent';
-import {HeaderTitle} from './components/HeaderTitleComponent/HeaderTitleComponent';
+import {CharityCardComponent} from './components/CharityCardComponent/CharityCardComponent';
+import {HeaderTitleComponent} from './components/HeaderTitleComponent/HeaderTitleComponent';
 
 const connector = connect((state: DonateState) => state);
 
@@ -38,7 +38,7 @@ export const App: React.FC<AppProps> = props => {
   return (
     <Container>
       <Row>
-        <HeaderTitle>Omise Tamboon React</HeaderTitle>
+        <HeaderTitleComponent>Omise Tamboon React</HeaderTitleComponent>
       </Row>
       <p>All donations: {props.donate}</p>
       {props.messages &&
@@ -48,7 +48,7 @@ export const App: React.FC<AppProps> = props => {
       <Row>
         {charities.map((charity, i) => (
           <Col md={12} lg={6} key={i}>
-            <CharityCard charity={charity}></CharityCard>
+            <CharityCardComponent charity={charity}></CharityCardComponent>
           </Col>
         ))}
       </Row>

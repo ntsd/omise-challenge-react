@@ -3,11 +3,11 @@ import {Card, Button} from 'react-bootstrap';
 import {Charity} from '../../types/Charity';
 import {SelectAmountComponent} from '../SelectAmountComponent/SelectAmountComponent';
 
-interface CharityCardProps {
+interface CharityCardComponentProps {
   charity: Charity;
 }
 
-export const CharityCard: React.FC<CharityCardProps> = ({charity}) => {
+export const CharityCardComponent: React.FC<CharityCardComponentProps> = ({charity}) => {
   const [isSelectingAmount, setIsSelectingAmount] = useState(false);
 
   const CloseButton = () => (

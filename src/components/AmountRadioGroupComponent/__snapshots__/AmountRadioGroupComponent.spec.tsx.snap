@@ -1,0 +1,111 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div>
+  <div
+    className="form-check form-check-inline"
+    style={undefined}
+  >
+    <input
+      checked={true}
+      className="form-check-input"
+      disabled={false}
+      id={undefined}
+      onChange={[Function]}
+      type="radio"
+      value={10}
+    />
+    <label
+      className="form-check-label"
+      htmlFor={undefined}
+      title=""
+    >
+      10
+    </label>
+  </div>
+  <div
+    className="form-check form-check-inline"
+    style={undefined}
+  >
+    <input
+      checked={false}
+      className="form-check-input"
+      disabled={false}
+      id={undefined}
+      onChange={[Function]}
+      type="radio"
+      value={20}
+    />
+    <label
+      className="form-check-label"
+      htmlFor={undefined}
+      title=""
+    >
+      20
+    </label>
+  </div>
+  <div
+    className="form-check form-check-inline"
+    style={undefined}
+  >
+    <input
+      checked={false}
+      className="form-check-input"
+      disabled={false}
+      id={undefined}
+      onChange={[Function]}
+      type="radio"
+      value={50}
+    />
+    <label
+      className="form-check-label"
+      htmlFor={undefined}
+      title=""
+    >
+      50
+    </label>
+  </div>
+  <div
+    className="form-check form-check-inline"
+    style={undefined}
+  >
+    <input
+      checked={false}
+      className="form-check-input"
+      disabled={false}
+      id={undefined}
+      onChange={[Function]}
+      type="radio"
+      value={100}
+    />
+    <label
+      className="form-check-label"
+      htmlFor={undefined}
+      title=""
+    >
+      100
+    </label>
+  </div>
+  <div
+    className="form-check form-check-inline"
+    style={undefined}
+  >
+    <input
+      checked={false}
+      className="form-check-input"
+      disabled={false}
+      id={undefined}
+      onChange={[Function]}
+      type="radio"
+      value={500}
+    />
+    <label
+      className="form-check-label"
+      htmlFor={undefined}
+      title=""
+    >
+      500
+    </label>
+  </div>
+</div>
+`;

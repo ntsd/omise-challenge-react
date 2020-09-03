@@ -1,0 +1,42 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div
+  className="card"
+  style={
+    Object {
+      "marginBottom": "50px",
+    }
+  }
+>
+  <img
+    className="card-img-top"
+    src="image"
+    style={
+      Object {
+        "height": "35vh",
+      }
+    }
+  />
+  <div
+    className="d-flex justify-content-between card-footer"
+    style={
+      Object {
+        "backgroundColor": "#fff",
+      }
+    }
+  >
+    <div>
+      test
+    </div>
+    <button
+      className="btn btn-outline-primary"
+      disabled={false}
+      onClick={[Function]}
+      type="button"
+    >
+      Donate
+    </button>
+  </div>
+</div>
+`;
