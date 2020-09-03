@@ -19,3 +19,11 @@ This project is using [Snapshot Testing](https://jestjs.io/docs/en/snapshot-test
 ### Better Specs
 
 Spec tests in this project following [Better Specs](https://www.betterspecs.org/)
+
+## Issues
+
+### Warning componentWillMount deprecate
+
+This happen because redux provider use `componentWillMount` and `componentWillReceiveProps`
+
+<https://github.com/reduxjs/react-redux/issues/1374>
