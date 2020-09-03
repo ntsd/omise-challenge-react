@@ -11,15 +11,9 @@ import {Container, Row, Col, Alert} from 'react-bootstrap';
 import {CharityCard} from './components/CharityCardComponent/CharityCardComponent';
 import {HeaderTitle} from './components/HeaderTitleComponent/HeaderTitleComponent';
 
-const mapState = (state: DonateState) => ({
-  donate: state.donate,
-  message: state.message,
-});
-
-const connector = connect(mapState);
+const connector = connect((state: DonateState) => state);
 
 type PropsFromRedux = ConnectedProps<typeof connector>;
-
 type AppProps = PropsFromRedux & DonateState;
 
 export const App: React.FC<AppProps> = props => {
@@ -47,7 +41,10 @@ export const App: React.FC<AppProps> = props => {
         <HeaderTitle>Omise Tamboon React</HeaderTitle>
       </Row>
       <p>All donations: {props.donate}</p>
-      {props.message && <Alert variant="primary">{props.message}</Alert>}
+      {props.messages &&
+        props.messages.map((message: string) => (
+          <Alert variant="primary">{message}</Alert>
+        ))}
       <Row>
         {charities.map((charity, i) => (
           <Col md={12} lg={6} key={i}>

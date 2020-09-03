@@ -8,22 +8,37 @@ interface CharityCardProps {
 }
 
 export const CharityCard: React.FC<CharityCardProps> = ({charity}) => {
-  const [isSelectedAmount, setIsSelectedAmount] = useState(false);
+  const [isSelectingAmount, setIsSelectingAmount] = useState(false);
+
+  const CloseButton = () => (
+    <Button
+      className="close"
+      aria-label="Close"
+      style={{position: 'absolute', right: '20px', top: '20px'}}
+      onClick={() => {
+        setIsSelectingAmount(false);
+      }}
+    >
+      <span aria-hidden="true">&times;</span>
+    </Button>
+  );
+
+  const DonateButton = () => (
+    <Button
+      variant="outline-primary"
+      onClick={() => {
+        setIsSelectingAmount(true);
+      }}
+    >
+      Donate
+    </Button>
+  );
 
   return (
     <Card style={{marginBottom: '50px'}}>
-      {isSelectedAmount ? (
+      {isSelectingAmount ? (
         <Card.Body style={{height: 'calc(35vh + 63px)', position: 'relative'}}>
-          <Button
-            className="close"
-            aria-label="Close"
-            style={{position: 'absolute', right: '20px', top: '20px'}}
-            onClick={() => {
-              setIsSelectedAmount(false);
-            }}
-          >
-            <span aria-hidden="true">&times;</span>
-          </Button>
+          <CloseButton />
           <SelectAmountComponent charity={charity}></SelectAmountComponent>
         </Card.Body>
       ) : (
@@ -33,16 +48,12 @@ export const CharityCard: React.FC<CharityCardProps> = ({charity}) => {
             src={charity.image}
             style={{height: '35vh'}}
           />
-          <Card.Footer className="d-flex justify-content-between">
+          <Card.Footer
+            className="d-flex justify-content-between"
+            style={{backgroundColor: '#fff'}}
+          >
             <div>{charity.name}</div>
-            <Button
-              variant="outline-primary"
-              onClick={() => {
-                setIsSelectedAmount(true);
-              }}
-            >
-              Donate
-            </Button>
+            <DonateButton />
           </Card.Footer>
         </>
       )}

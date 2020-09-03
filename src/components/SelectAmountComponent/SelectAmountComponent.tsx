@@ -4,6 +4,8 @@ import {Charity} from '../../types/Charity';
 import {PostPayment} from '../../api/API';
 import {useDispatch} from 'react-redux';
 import styled from 'styled-components';
+import {AmountRadioGroupComponent} from '../AmountRadioGroupComponent/AmountRadioGroupComponent';
+import {DonateActionType} from '../../store/donate/action';
 
 interface SelectAmountComponentProps {
   charity: Charity;
@@ -15,38 +17,26 @@ export const SelectAmountComponent: React.FC<SelectAmountComponentProps> = ({
   const [selectedAmount, setSelectedAmount] = useState(10);
   const dispatch = useDispatch();
 
-  const paymentRadio = [10, 20, 50, 100, 500].map((amount, j) => (
-    <label key={j}>
-      <input
-        type="radio"
-        name="payment"
-        onClick={() => {
-          setSelectedAmount(amount);
-        }}
-      />{' '}
-      {amount}
-    </label>
-  ));
-
-  const handlePay = (id: number, amount: number, currency: string) => {
-    PostPayment({charitiesId: id, amount: amount, currency: currency}).then(
-      function () {
+  const handlePay = () => {
+    PostPayment({
+      charitiesId: charity.id,
+      amount: selectedAmount,
+      currency: charity.currency,
+    }).then(function () {
+      dispatch({
+        type: DonateActionType.UPDATE_TOTAL_DONATE,
+        amount: selectedAmount,
+      });
+      dispatch({
+        type: DonateActionType.UPDATE_MESSAGE,
+        message: `Thanks for donate ${selectedAmount}!`,
+      });
+      setTimeout(() => {
         dispatch({
-          type: 'UPDATE_TOTAL_DONATE',
-          amount,
+          type: DonateActionType.REMOVE_MESSAGE,
         });
-        dispatch({
-          type: 'UPDATE_MESSAGE',
-          message: `Thanks for donate ${amount}!`,
-        });
-        setTimeout(function () {
-          dispatch({
-            type: 'UPDATE_MESSAGE',
-            message: '',
-          });
-        }, 2000);
-      }
-    );
+      }, 2000);
+    });
   };
 
   const SelectAmountContainer = styled.div`
@@ -60,19 +50,20 @@ export const SelectAmountComponent: React.FC<SelectAmountComponentProps> = ({
   const SelectAmountRow = styled.div`
     line-height: 1.5;
     vertical-align: middle;
+    padding-top: 10px;
   `;
 
   return (
     <SelectAmountContainer>
-      <SelectAmountRow>{charity.name}</SelectAmountRow>
-      <SelectAmountRow>{paymentRadio}</SelectAmountRow>
+      <SelectAmountRow>Select the amount to donate (USD)</SelectAmountRow>
       <SelectAmountRow>
-        <Button
-          variant="outline-primary"
-          onClick={() => {
-            handlePay(charity.id, selectedAmount, charity.currency);
-          }}
-        >
+        <AmountRadioGroupComponent
+          selectedAmount={selectedAmount}
+          setSelectedAmount={setSelectedAmount}
+        ></AmountRadioGroupComponent>
+      </SelectAmountRow>
+      <SelectAmountRow>
+        <Button variant="outline-primary" onClick={handlePay}>
           Pay
         </Button>
       </SelectAmountRow>
