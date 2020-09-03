@@ -1,0 +1,24 @@
+{
+  "extends": [
+    "./node_modules/gts/",
+    "plugin:react/recommended"
+  ],
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
+  "plugins": ["react"],
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "rules": {
+    "react/prop-types": "off"
+  },
+  "env": {
+    "browser": true,
+    "jest": true
+  }
+}
